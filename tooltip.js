@@ -6,7 +6,16 @@ class Tooltip extends HTMLElement {
     this._tooltipText = "This is the tooltip text placeholder.";
     // creating a shadow DOM
     this.attachShadow({ mode: "open" });
+    // after the above line, now shadowRoot is available
     this.shadowRoot.innerHTML = `
+        <style>
+            div {
+                background-color: grey;
+                color: white;
+                z-index: 10;
+                position: absolute;
+            }
+        </style>
         <slot>Default text</slot>
         <span> (?) </span>
     `;
@@ -16,7 +25,7 @@ class Tooltip extends HTMLElement {
     if (this.hasAttribute("text")) {
       this._tooltipText = this.getAttribute("text");
     }
-    const tooltipIcon = document.createElement("span");
+    const tooltipIcon = this.shadowRoot.querySelector("span");
     tooltipIcon.addEventListener("mouseenter", this._showTooltip.bind(this));
     tooltipIcon.addEventListener("mouseleave", this._hideTooltip.bind(this));
     this.shadowRoot.appendChild(tooltipIcon);
@@ -30,6 +39,7 @@ class Tooltip extends HTMLElement {
     this.shadowRoot.appendChild(this._tooltipContainer);
   }
 
+  // pseudo private method
   _hideTooltip() {
     this.shadowRoot.removeChild(this._tooltipContainer);
   }

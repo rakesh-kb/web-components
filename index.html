@@ -6,16 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web Components</title>
     <script src="tooltip.js "></script>
+    <script src="confirm-link.js "></script>
   </head>
   <body>
     <!-- <template id="tooltip-template">
         <slot></slot> <span> (?) </span>
     </template> -->
     <p>
-      <kb-tooltip text="This is a tooltip">Web Components</kb-tooltip> are
-      awesome!
+      <kb-tooltip text="Web components is a set of standards">Web Components</kb-tooltip>
+      are awesome!
     </p>
     <p><kb-tooltip>Hard coded data</kb-tooltip></p>
     <p><kb-tooltip></kb-tooltip></p>
+    <a is="kb-confirm-link" href="https://www.google.com">Go to Google</a>
   </body>
 </html>
